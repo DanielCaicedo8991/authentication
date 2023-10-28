@@ -52,14 +52,14 @@ app.post('/registro', async (req, res) => {
     const userRecord = await admin.auth().createUser({
       email,
       password: passwordEncriptada, // Almacena la contraseña encriptada en Firebase Auth
-      displayName,
+      name,
       passwordHash: passwordEncriptada,
     });
 
     // Guarda los datos del usuario en Firestore
     const userRef = db.collection('users').doc(userRecord.uid);
     await userRef.set({
-      displayName,
+      name,
       email,
       password: passwordEncriptada,
       passwordHash: passwordEncriptada, // Almacena la contraseña encriptada en Firestore
